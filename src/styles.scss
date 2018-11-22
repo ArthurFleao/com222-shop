@@ -1,2 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+$tamanhoMenu: 250px;
+
+.menu{
+
+    position: absolute;
+    max-height: calc(100vh - 75px);
+    min-height: 100%;
+    overflow: auto;
+    width: $tamanhoMenu;
+    z-index: 4;
+    padding-bottom: 75px;
+    background: red;
+}
+
+.container{
+
+    margin-left: $tamanhoMenu;
+}
