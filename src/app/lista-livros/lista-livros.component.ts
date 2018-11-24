@@ -11,14 +11,14 @@ export class ListaLivrosComponent implements OnInit {
 
   descricoes: Descricao[];
 
-  constructor( 
-   private  livrosService: LivrosService,
+  constructor(
+    private livrosService: LivrosService,
   ) { this.getDescricoes(); }
 
 
 
   ngOnInit() {
-    
+
   }
 
   getDescricoes() {
