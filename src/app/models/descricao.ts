@@ -1,7 +1,7 @@
 export class Descricao {
     isbn: number;
     titulo: string;
-    descricao: string;
+    description: string;
     preco: number;
     publicante: string;
     edicao: number;

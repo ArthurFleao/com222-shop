@@ -21,12 +21,31 @@ export class ListaLivrosComponent implements OnInit {
 
   }
 
+  truncarTextos(){
+    this.descricoes.forEach(function (descricao){
+      
+    let palavras = descricao.description.split(" ");
+    console.log("Palavras", palavras);
+
+    let novaDescricao = "";
+
+    for (let i = 0; i < 25; i++) {
+      if (palavras[i] != undefined)
+      novaDescricao+= palavras[i] + " ";
+    }
+    
+    
+    descricao.description = novaDescricao;
+    
+    });
+  }
+
   getDescricoes() {
     return this.livrosService.getDescricoes()
       .subscribe(
         descricoes => {
-          console.log(descricoes);
           this.descricoes = descricoes
+          this.truncarTextos();
         }
       );
   }

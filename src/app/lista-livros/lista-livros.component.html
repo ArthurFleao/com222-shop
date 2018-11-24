@@ -1,20 +1,9 @@
 <div *ngFor="let descricao of descricoes">
 
-  {{descricao.ISBN}}
+
+  <h3>{{descricao.title}}</h3>
   <br>
-  {{descricao.title}}
-  <br>
-  {{descricao.description}}
-  <br>
-  {{descricao.price}}
-  <br>
-  {{descricao.publisher}}
-  <br>
-  {{descricao.pubdate}}
-  <br>
-  {{descricao.edition}}
-  <br>
-  {{descricao.pages}}
+  <span  [innerHtml]="descricao.description"> </span> <a> Ler Mais...</a>
   <br>
 
 </div>

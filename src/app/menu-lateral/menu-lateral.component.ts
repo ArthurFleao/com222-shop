@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Categoria } from '../models/categoria';
 import { LivrosService } from '../livros-service.service';
+
 @Component({
   selector: 'app-menu-lateral',
   templateUrl: './menu-lateral.component.html',
@@ -12,7 +13,7 @@ export class MenuLateralComponent implements OnInit {
     private livrosService: LivrosService,
   ) {
     this.getCategorias();
-   }
+  }
 
   ngOnInit() {
   }
@@ -26,6 +27,5 @@ export class MenuLateralComponent implements OnInit {
         }
       );
   }
-
 
 }
