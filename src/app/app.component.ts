@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Categoria } from './models/categoria';
+import { LivrosService } from './livros-service.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'com222-shop';
+  categorias: Categoria[];
+
+  constructor(
+    private livrosService: LivrosService,
+  ) {
+    this.getCategorias();
+  }
+
+  getCategorias() {
+    return this.livrosService.getCategorias()
+      .subscribe(
+        categorias => {
+          console.log(categorias);
+          this.categorias = categorias
+        }
+      );
+  }
 }

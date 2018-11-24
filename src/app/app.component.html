@@ -1,11 +1,6 @@
 <div class="menu">
   <ul>
-    <li> <a> ALGUMA COISA </a> </li>
-    <li> <a> ALGUMA COISA </a> </li>
-    <li> <a> ALGUMA COISA </a> </li>
-    <li> <a> ALGUMA COISA </a> </li>
-    <li> <a> ALGUMA COISA </a> </li>
-    <li> <a> ALGUMA COISA </a> </li>
+    <li *ngFor="let categoria of categorias"> <a> {{categoria.CategoryName}} </a> </li>
   </ul>
 </div>
 
