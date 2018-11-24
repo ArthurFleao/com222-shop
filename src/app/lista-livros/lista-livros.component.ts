@@ -12,28 +12,31 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ListaLivrosComponent implements OnInit {
   livros: LivroInfo[];
+  categoryId: string;
 
   constructor(
     private livrosService: LivrosService,
     private route: ActivatedRoute,
-  ) { this.getLivroInfo(); }
-
-
+  ) {  }
 
   ngOnInit() {
-
+    
+    this.route.params.subscribe(params => {
+      this.categoryId = params['categoryId'];
+      this.getLivroInfo();
+    });
   }
 
   categorizarLivros(){
 
-    let categoryId:string  = this.route.snapshot.paramMap.get('categoryId');
-    console.log(categoryId);
-    if (categoryId != "todos"){
-      let categoryIdNumber = +categoryId;
+
+    console.log(this.categoryId);
+    if (this.categoryId != "todos"){
+      let categoryIdNumber = +this.categoryId;
     
     this.livros = this.livros.filter((livros) => {
       return livros.CategoryID === categoryIdNumber;
-    })}
+    })};
 
   }
 
