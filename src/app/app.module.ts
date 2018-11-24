@@ -6,13 +6,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { LivrosComponent } from './livros/livros.component';
 import { LivrosInfoComponent } from './livros-info/livros-info.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
+import { ListaLivrosComponent } from './lista-livros/lista-livros.component';
+import { ListaLivrosCategoriasComponent } from './lista-livros-categorias/lista-livros-categorias.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LivrosComponent,
-    LivrosInfoComponent
+    LivrosInfoComponent,
+    MenuLateralComponent,
+    ListaLivrosComponent,
+    ListaLivrosCategoriasComponent
   ],
   imports: [
     BrowserModule,

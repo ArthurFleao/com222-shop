@@ -1,5 +1,5 @@
-export class Livro {
-     id: number;
+export class Descricao {
+    isbn: number;
     titulo: string;
     descricao: string;
     preco: number;
