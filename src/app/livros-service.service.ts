@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Categoria } from './models/categoria';
 import { Descricao } from './models/descricao';
+import { LivroInfo } from './models/livro-info';
 
 
 const httpOptions = {
@@ -16,6 +17,7 @@ export class LivrosService {
 
   private categoriesUrl = 'http://localhost:8080/api/bookcategories';  // URL de categorias
   private descriptionsUrl = 'http://localhost:8080/api/bookdescriptions';  // URL de descrições
+  private livroinfoUrl = 'http://localhost:8080/api/bookinfo';  // URL de descrições
   constructor(
     private http: HttpClient
   ) { }
@@ -30,6 +32,8 @@ export class LivrosService {
     return this.http.get<Descricao[]>(this.descriptionsUrl)
   }
 
-
+  getLivroInfo(): Observable<LivroInfo[]> {
+    return this.http.get<LivroInfo[]>(this.livroinfoUrl)
+  }
   
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Descricao } from '../models/descricao';
 import { LivrosService } from '../livros-service.service';
+import { LivroInfo } from '../models/livro-info';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-lista-livros',
@@ -8,12 +11,12 @@ import { LivrosService } from '../livros-service.service';
   styleUrls: ['./lista-livros.component.scss']
 })
 export class ListaLivrosComponent implements OnInit {
-
-  descricoes: Descricao[];
+  livros: LivroInfo[];
 
   constructor(
     private livrosService: LivrosService,
-  ) { this.getDescricoes(); }
+    private route: ActivatedRoute,
+  ) { this.getLivroInfo(); }
 
 
 
@@ -21,11 +24,24 @@ export class ListaLivrosComponent implements OnInit {
 
   }
 
+  categorizarLivros(){
+
+    let categoryId:string  = this.route.snapshot.paramMap.get('categoryId');
+    console.log(categoryId);
+    if (categoryId != "todos"){
+      let categoryIdNumber = +categoryId;
+    
+    this.livros = this.livros.filter((livros) => {
+      return livros.CategoryID === categoryIdNumber;
+    })}
+
+  }
+
   truncarTextos(){
-    this.descricoes.forEach(function (descricao){
+    this.livros.forEach(function (descricao){
       
     let palavras = descricao.description.split(" ");
-    console.log("Palavras", palavras);
+    
 
     let novaDescricao = "";
 
@@ -40,12 +56,13 @@ export class ListaLivrosComponent implements OnInit {
     });
   }
 
-  getDescricoes() {
-    return this.livrosService.getDescricoes()
+  getLivroInfo() {
+    return this.livrosService.getLivroInfo()
       .subscribe(
-        descricoes => {
-          this.descricoes = descricoes
+        livros => {
+          this.livros = livros
           this.truncarTextos();
+          this.categorizarLivros();
         }
       );
   }

@@ -5,7 +5,8 @@ import { ListaLivrosComponent } from './lista-livros/lista-livros.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'lista/todos', pathMatch: 'full' },
-  { path: 'lista/todos', component: ListaLivrosComponent }
+  { path: 'lista/todos/', component: ListaLivrosComponent },
+  { path: 'lista/:categoryId', component: ListaLivrosComponent }
 ];
 
 @NgModule({

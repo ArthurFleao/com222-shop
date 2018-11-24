@@ -1,9 +1,9 @@
-<div *ngFor="let descricao of descricoes">
+<div *ngFor="let livro of livros">
 
 
-  <h3>{{descricao.title}}</h3>
+  <h3>{{livro.title}}</h3>
   <br>
-  <span  [innerHtml]="descricao.description"> </span> <a> Ler Mais...</a>
+  <span [innerHtml]="livro.description"> </span> <a> Ler Mais...</a>
   <br>
 
 </div>

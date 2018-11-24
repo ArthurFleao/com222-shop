@@ -1,7 +1,16 @@
-import { Descricao } from './descricao';
 
 export class LivroInfo {
-descricao: Descricao;
-autor: string;
-categoria: string;
+CategoryID: number;
+CategoryName: string;
+ISBN: number;
+title: string;
+description: string;
+price: number;
+publisher: string;
+pubdate: string;
+edition: number;
+pages: number;
+AuthorID: number;
+nameF: string;
+nameL: string;
 }
