@@ -41,4 +41,11 @@ export class LivrosService {
     return this.http.get<LivroInfo>(url);
   }
 
+
+  getLivroInfoByBusca(termosBusca: string): Observable<LivroInfo[]> {
+    const url = `${this.livroinfoUrl}/busca/${termosBusca}`;
+    return this.http.get<LivroInfo[]>(url);
+  }
+
+
 }

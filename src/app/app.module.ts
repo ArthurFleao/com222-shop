@@ -11,6 +11,7 @@ import { ListaLivrosComponent } from './lista-livros/lista-livros.component';
 
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
+import { BuscaLivrosComponent } from './busca-livros/busca-livros.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     LivrosInfoComponent,
     MenuLateralComponent,
     ListaLivrosComponent,
-    HeaderComponent
+    HeaderComponent,
+    BuscaLivrosComponent
   ],
   imports: [
     FormsModule,

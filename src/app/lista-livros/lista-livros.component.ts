@@ -25,7 +25,11 @@ export class ListaLivrosComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.categoryId = params['categoryId'];
       this.termosBusca = params['termosBusca'];
-      this.getLivroInfo();
+
+      if (this.termosBusca != undefined)
+        this.getLivroInfoByBusca();
+      else
+        this.getLivroInfo();
     });
   }
 
@@ -41,48 +45,41 @@ export class ListaLivrosComponent implements OnInit {
 
   }
 
-  filtrarPorBusca() {
-    
-      this.livros = this.livros.filter((livro) => {
-        return (livro.title.search(new RegExp(this.termosBusca, "i")) > -1);
-      })
-    };
 
-  
+  getLivroInfoByBusca() {
+    return this.livrosService.getLivroInfoByBusca(this.termosBusca)
+      .subscribe(
+        livros => {
+          this.livros = livros
+          this.truncarTextos();
+        }
+
+      );
+  }
+
+
 
   truncarTextos() {
     this.livros.forEach(function (descricao) {
-
       let palavras = descricao.description.split(" ");
-
-
       let novaDescricao = "";
 
       for (let i = 0; i < 25; i++) {
         if (palavras[i] != undefined)
           novaDescricao += palavras[i] + " ";
       }
-
-
       descricao.description = novaDescricao;
 
     });
   }
 
   getLivroInfo() {
-    console.log("paramb", this.termosBusca);
-    console.log("paramId", this.categoryId);
-
     return this.livrosService.getLivroInfo()
       .subscribe(
         livros => {
           this.livros = livros
           this.truncarTextos();
-          if (this.categoryId != undefined)
           this.categorizarLivros();
-
-          if (this.termosBusca != undefined)
-          this.filtrarPorBusca();
         }
       );
   }
