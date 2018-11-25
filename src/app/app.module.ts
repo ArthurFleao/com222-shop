@@ -10,7 +10,7 @@ import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 import { ListaLivrosComponent } from './lista-livros/lista-livros.component';
 
 import { HeaderComponent } from './header/header.component';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import { HeaderComponent } from './header/header.component';
     HeaderComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule

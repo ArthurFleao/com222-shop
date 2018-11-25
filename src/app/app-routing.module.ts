@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'lista/todos', pathMatch: 'full' },
   { path: 'lista/todos/', component: ListaLivrosComponent },
   { path: 'lista/:categoryId', component: ListaLivrosComponent },
+  { path: 'lista/busca/:termosBusca', component: ListaLivrosComponent },
   { path: 'info/:livroISBN', component: LivrosInfoComponent }
 ];
 

@@ -9,6 +9,7 @@ import { LivrosService } from '../livros-service.service';
 })
 export class MenuLateralComponent implements OnInit {
   categorias: Categoria[];
+  termosBusca: string;
   constructor(
     private livrosService: LivrosService,
   ) {
@@ -27,5 +28,6 @@ export class MenuLateralComponent implements OnInit {
         }
       );
   }
+
 
 }
