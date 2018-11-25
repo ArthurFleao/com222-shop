@@ -12,7 +12,11 @@
     <li> {{livro.pubdate}} </li>
     <li> {{livro.edition}} </li>
     <li> {{livro.pages}} </li>
-    <li> {{livro.AuthorID}} </li>
-    <li> {{livro.nameF}} </li>
-    <li> {{livro.nameL}} </li>
+
+    <hr>
+</ul>
+<ul *ngFor="let autor of autores">
+    <li> {{autor.AuthorID}} </li>
+    <li> {{autor.nameF}} </li>
+    <li> {{autor.nameL}} </li>
 </ul>

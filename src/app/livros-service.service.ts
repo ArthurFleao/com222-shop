@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Categoria } from './models/categoria';
 import { Descricao } from './models/descricao';
 import { LivroInfo } from './models/livro-info';
+import { Author } from './models/author';
 
 
 const httpOptions = {
@@ -18,6 +19,7 @@ export class LivrosService {
   private categoriesUrl = 'http://localhost:8080/api/bookcategories';  // URL de categorias
   private descriptionsUrl = 'http://localhost:8080/api/bookdescriptions';  // URL de descrições
   private livroinfoUrl = 'http://localhost:8080/api/bookinfo';  // URL de inforamções detalhadas de livros
+  private authorUrl = 'http://localhost:8080/api/bookauthor';  // URL de inforamções de autores
   constructor(
     private http: HttpClient
   ) { }
@@ -41,10 +43,13 @@ export class LivrosService {
     return this.http.get<LivroInfo>(url);
   }
 
-
   getLivroInfoByBusca(termosBusca: string): Observable<LivroInfo[]> {
     const url = `${this.livroinfoUrl}/busca/${termosBusca}`;
     return this.http.get<LivroInfo[]>(url);
+  }
+  getAuthorByISBN(ISBN: number): Observable<Author[]> {
+    const url = `${this.authorUrl}/${ISBN}`;
+    return this.http.get<Author[]>(url);
   }
 
 

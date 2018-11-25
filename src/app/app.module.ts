@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { LivrosComponent } from './livros/livros.component';
+
 import { LivrosInfoComponent } from './livros-info/livros-info.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
@@ -12,11 +12,11 @@ import { ListaLivrosComponent } from './lista-livros/lista-livros.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { BuscaLivrosComponent } from './busca-livros/busca-livros.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LivrosComponent,
     LivrosInfoComponent,
     MenuLateralComponent,
     ListaLivrosComponent,
@@ -29,7 +29,7 @@ import { BuscaLivrosComponent } from './busca-livros/busca-livros.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
