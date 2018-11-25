@@ -14,7 +14,7 @@ export class LivrosInfoComponent implements OnInit {
   constructor(
     private livrosService: LivrosService,
     private route: ActivatedRoute,
-  ) {  this.livro = new LivroInfo();}
+  ) { this.livro = new LivroInfo(); }
 
   ngOnInit() {
 
