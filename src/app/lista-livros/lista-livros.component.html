@@ -1,6 +1,7 @@
 <div *ngFor="let livro of livros">
 
 
+  <img src="https://baldochi.unifei.edu.br/COM222/trabfinal/imagens/{{livro.ISBN}}.01.THUMBZZZ.jpg" alt="Imagem não encontrada.">
   <h3>{{livro.title}}</h3>
   <br>
   <span [innerHtml]="livro.description"> </span> <a routerLink="/info/{{livro.ISBN}}"> Ler Mais...</a>

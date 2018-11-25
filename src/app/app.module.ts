@@ -8,7 +8,8 @@ import { LivrosInfoComponent } from './livros-info/livros-info.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 import { ListaLivrosComponent } from './lista-livros/lista-livros.component';
-import { ListaLivrosCategoriasComponent } from './lista-livros-categorias/lista-livros-categorias.component';
+
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { ListaLivrosCategoriasComponent } from './lista-livros-categorias/lista-
     LivrosInfoComponent,
     MenuLateralComponent,
     ListaLivrosComponent,
-    ListaLivrosCategoriasComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

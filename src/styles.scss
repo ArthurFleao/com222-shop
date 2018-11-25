@@ -2,20 +2,31 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 $tamanhoMenu: 250px;
+$tamanhoHeader: 100px;
 
 .menu{
-
-    position: absolute;
+    position: fixed;
     max-height: calc(100vh - 75px);
     min-height: 100%;
     overflow: auto;
     width: $tamanhoMenu;
+    margin-top: $tamanhoHeader;
     z-index: 4;
-    padding-bottom: 75px;
     background: red;
 }
 
-.container{
 
+.header{
+
+    position: fixed;
+    height: $tamanhoHeader;
+    width: 100%;
+    z-index: 4;
+    background: blue;
+    
+}
+
+.content{
+    padding-top: $tamanhoHeader + 50px;
     margin-left: $tamanhoMenu;
 }
