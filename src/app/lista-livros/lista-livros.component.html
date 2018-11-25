@@ -3,7 +3,7 @@
 
   <h3>{{livro.title}}</h3>
   <br>
-  <span [innerHtml]="livro.description"> </span> <a> Ler Mais...</a>
+  <span [innerHtml]="livro.description"> </span> <a routerLink="/info/{{livro.ISBN}}"> Ler Mais...</a>
   <br>
 
 </div>

@@ -17,7 +17,7 @@ export class LivrosService {
 
   private categoriesUrl = 'http://localhost:8080/api/bookcategories';  // URL de categorias
   private descriptionsUrl = 'http://localhost:8080/api/bookdescriptions';  // URL de descrições
-  private livroinfoUrl = 'http://localhost:8080/api/bookinfo';  // URL de descrições
+  private livroinfoUrl = 'http://localhost:8080/api/bookinfo';  // URL de inforamções detalhadas de livros
   constructor(
     private http: HttpClient
   ) { }
@@ -35,5 +35,10 @@ export class LivrosService {
   getLivroInfo(): Observable<LivroInfo[]> {
     return this.http.get<LivroInfo[]>(this.livroinfoUrl)
   }
-  
+
+  getLivroInfoByISBN(id: number): Observable<LivroInfo> {
+    const url = `${this.livroinfoUrl}/${id}`;
+    return this.http.get<LivroInfo>(url);
+  }
+
 }
