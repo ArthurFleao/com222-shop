@@ -18,10 +18,7 @@ export class ListaLivrosComponent implements OnInit {
   constructor(
     private livrosService: LivrosService,
     private route: ActivatedRoute,
-  ) { }
-
-  ngOnInit() {
-
+  ) {  
     this.route.params.subscribe(params => {
       this.categoryId = params['categoryId'];
       this.termosBusca = params['termosBusca'];
@@ -30,7 +27,10 @@ export class ListaLivrosComponent implements OnInit {
         this.getLivroInfoByBusca();
       else
         this.getLivroInfo();
-    });
+    });}
+
+  ngOnInit() {
+
   }
 
   categorizarLivros() {
