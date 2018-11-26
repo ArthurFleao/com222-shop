@@ -1,6 +1,6 @@
 export class Author {
     AuthorID: number;
-    ISBN: number;
+    ISBN: string;
     nameF: string;
     nameL: string;
 }

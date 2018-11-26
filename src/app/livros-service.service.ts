@@ -38,7 +38,7 @@ export class LivrosService {
     return this.http.get<LivroInfo[]>(this.livroinfoUrl)
   }
 
-  getLivroInfoByISBN(id: number): Observable<LivroInfo> {
+  getLivroInfoByISBN(id: string): Observable<LivroInfo> {
     const url = `${this.livroinfoUrl}/${id}`;
     return this.http.get<LivroInfo>(url);
   }
@@ -47,7 +47,7 @@ export class LivrosService {
     const url = `${this.livroinfoUrl}/busca/${termosBusca}`;
     return this.http.get<LivroInfo[]>(url);
   }
-  getAuthorByISBN(ISBN: number): Observable<Author[]> {
+  getAuthorByISBN(ISBN: string): Observable<Author[]> {
     const url = `${this.authorUrl}/${ISBN}`;
     return this.http.get<Author[]>(url);
   }

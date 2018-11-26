@@ -12,7 +12,7 @@ import { Author } from '../models/author';
 })
 export class LivrosInfoComponent implements OnInit {
   livro: LivroInfo;
-  livroISBN: number;
+  livroISBN: string;
   autores: Author[];
   constructor(
     private livrosService: LivrosService,
