@@ -48,7 +48,7 @@ export class LivrosInfoComponent implements OnInit {
       );
   }
 
-  addToCart(){
+  addToCart() {
     this.cart.add(this.livro.ISBN);
   }
 

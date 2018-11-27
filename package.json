@@ -24,6 +24,7 @@
     "core-js": "^2.5.4",
     "ngx-cookie-service": "^2.0.0",
     "rxjs": "~6.2.0",
+    "typescript-map": "0.0.6",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
