@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { BuscaLivrosComponent } from './busca-livros/busca-livros.component';
 import { CookieService } from 'ngx-cookie-service';
+import { CarrinhoComponent } from './carrinho/carrinho.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CookieService } from 'ngx-cookie-service';
     MenuLateralComponent,
     ListaLivrosComponent,
     HeaderComponent,
-    BuscaLivrosComponent
+    BuscaLivrosComponent,
+    CarrinhoComponent
   ],
   imports: [
     FormsModule,

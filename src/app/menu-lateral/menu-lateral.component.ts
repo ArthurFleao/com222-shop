@@ -23,7 +23,6 @@ export class MenuLateralComponent implements OnInit {
     return this.livrosService.getCategorias()
       .subscribe(
         categorias => {
-          console.log(categorias);
           this.categorias = categorias
         }
       );

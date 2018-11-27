@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { TSMap } from "typescript-map"
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class CartService {
 
   add(ISBN: string) {
     this.get();
-
+    
     if (this.lista.has(ISBN)) { // se o livro ja existir na lista, aumenta a qtd em 1
       this.lista.set(ISBN, this.lista.get(ISBN) + 1);
     }
@@ -24,6 +25,7 @@ export class CartService {
     }
 
     this.save();
+    console.log("Livro adicionado:", ISBN);
   }
 
   remove(ISBN: string) { 
@@ -57,6 +59,11 @@ export class CartService {
   limparCarrinho() {
     this.lista = new TSMap<string, number>(); // reseta a variavel local
     this.cookieService.delete('lista'); // deleta o cookie
+  }
+
+
+  getLista():TSMap<string,number>{
+    return  this.lista;
   }
 
 
