@@ -1,8 +1,19 @@
 itens no carrinho:
 
+<button (click)="limparCarrinho()">LIMPAR CARRINHO</button>
 <div *ngFor="let item of carrinho">
 
   {{item.title}}
   <br> 
   {{item.price}}
+  <br>
+  <button (click)="remove(item.ISBN)" > Remover </button>
+  {{item.qtd}}
+  <button (click)="add(item.ISBN)" > Adicionar </button>
+  <hr>
 </div>
+
+<hr>
+Subtotal: {{subtotal}}
+Frete: {{frete}}
+Total: {{total}}

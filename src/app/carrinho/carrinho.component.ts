@@ -15,10 +15,17 @@ export class CarrinhoComponent implements OnInit {
   carrinho: ItemCarrinho[];
   lista: TSMap<string, number>;
   livros: LivroInfo[];
+  subtotal: number;
+  total: number;
+  frete: number;
   constructor(
     private cartService: CartService,
     private livrosService: LivrosService,
-  ) { this.carrinho = new Array<ItemCarrinho>(); }
+  ) { this.init(); }
+
+  init( ){
+    this.carrinho = new Array<ItemCarrinho>(); this.total = this.frete = this.subtotal =  0;
+  }
 
   ngOnInit() {
     this.getLivroInfo();
@@ -36,6 +43,10 @@ export class CarrinhoComponent implements OnInit {
       );
   }
 
+  limparCarrinho(){
+    this.cartService.limparCarrinho();
+    this.refresh();
+  }
   add(ISBN: string) {
     this.cartService.add(ISBN);
     this.refresh();
@@ -49,23 +60,36 @@ export class CarrinhoComponent implements OnInit {
 
   refresh() {
     this.lista = this.cartService.getLista(); // pega a lista em cart-service
-    this.carrinho = new Array<ItemCarrinho>();
+    this.init();
     console.log(this.lista);
     this.lista.forEach((qtd: number, ISBN: string) => {
       let novoItem = new ItemCarrinho();
       let livroCorrespondente = this.livros.filter((livros) => {
         return livros.ISBN === ISBN;
       });
-
-      console.log("lvc", livroCorrespondente);
-      novoItem.ISBN = ISBN;
-      novoItem.qtd = qtd;
-      novoItem.title = livroCorrespondente[0].title;
-      novoItem.price = livroCorrespondente[0].price;
-
-      this.carrinho.push(novoItem);
-
+      if (livroCorrespondente != undefined) {
+        console.log("lvc", livroCorrespondente);
+        novoItem.ISBN = ISBN;
+        novoItem.qtd = qtd;
+        novoItem.title = livroCorrespondente[0].title;
+        novoItem.price = livroCorrespondente[0].price;
+        this.carrinho.push(novoItem);
+      }
     });
+
+    this.carrinho.forEach(item => {
+      this.subtotal += item.price * item.qtd;
+
+      if (this.frete == 0)
+      this.frete+=5;
+
+      this.frete += 5*item.qtd;
+      
+    });
+
+    this.total = this.subtotal + this.frete;
   }
+
+  
 
 }
