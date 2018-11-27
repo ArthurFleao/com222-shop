@@ -2,7 +2,7 @@
 export class LivroInfo {
 CategoryID: number;
 CategoryName: string;
-ISBN: number;
+ISBN: string;
 title: string;
 description: string;
 price: number;

@@ -4,6 +4,7 @@ import { LivrosService } from '../livros-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Author } from '../models/author';
+import { CartService } from '../cart-service.service';
 
 @Component({
   selector: 'app-livros-info',
@@ -17,7 +18,7 @@ export class LivrosInfoComponent implements OnInit {
   constructor(
     private livrosService: LivrosService,
     private route: ActivatedRoute,
-    private cookieService: CookieService,
+    private cart: CartService
   ) { this.livro = new LivroInfo(); }
 
   ngOnInit() {
@@ -48,7 +49,7 @@ export class LivrosInfoComponent implements OnInit {
   }
 
   addToCart(){
-    
+    this.cart.add(this.livro.ISBN);
   }
 
 }
