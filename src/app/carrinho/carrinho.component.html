@@ -4,12 +4,12 @@ itens no carrinho:
 <div *ngFor="let item of carrinho">
 
   {{item.title}}
-  <br> 
+  <br>
   {{item.price}}
   <br>
-  <button (click)="remove(item.ISBN)" > Remover </button>
+  <button (click)="remove(item.ISBN)"> Remover </button>
   {{item.qtd}}
-  <button (click)="add(item.ISBN)" > Adicionar </button>
+  <button (click)="add(item.ISBN)"> Adicionar </button>
   <hr>
 </div>
 
@@ -17,3 +17,28 @@ itens no carrinho:
 Subtotal: {{subtotal}}
 Frete: {{frete}}
 Total: {{total}}
+
+
+<form>
+  <input [(ngModel)]="email" name="email" type="text">
+  {{msgErro}}
+  <button (click)="checkout()" type="submit"> Checkout </button>
+
+  <input id="name" name="name" class="form-control" required minlength="4" appForbiddenName="bob" [(ngModel)]="name"
+    #name="ngModel">
+
+  <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+    <div *ngIf="name.errors.required">
+      Name is required.
+    </div>
+    <div *ngIf="name.errors.minlength">
+      Name must be at least 4 characters long.
+    </div>
+    <div *ngIf="name.errors.forbiddenName">
+      Name cannot be Bob.
+    </div>
+
+  </div>
+
+</form>

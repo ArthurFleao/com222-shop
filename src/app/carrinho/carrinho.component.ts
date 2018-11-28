@@ -4,6 +4,7 @@ import { CartService } from '../cart-service.service';
 import { LivrosService } from '../livros-service.service';
 import { LivroInfo } from '../models/livro-info';
 import { ItemCarrinho } from '../models/item-carrinho';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-carrinho',
@@ -18,9 +19,15 @@ export class CarrinhoComponent implements OnInit {
   subtotal: number;
   total: number;
   frete: number;
+  email: string;
+  msgErro: string;
+  name: string;
+  
   constructor(
     private cartService: CartService,
     private livrosService: LivrosService,
+    private cookieService: CookieService,
+
   ) { this.init(); }
 
   init( ){
@@ -30,8 +37,19 @@ export class CarrinhoComponent implements OnInit {
   ngOnInit() {
     this.getLivroInfo();
 
+    this.email = this.cookieService.get("email");
+
   }
 
+  checkout(){
+
+
+  }
+
+  setEmail()
+  {
+    this.cookieService.set("email",this.email);
+  }
 
   getLivroInfo() {
     return this.livrosService.getLivroInfo()
