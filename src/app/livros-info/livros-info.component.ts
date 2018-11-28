@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LivroInfo } from '../models/livro-info';
-import { LivrosService } from '../livros-service.service';
+import { LivrosService } from '../services/livros-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Author } from '../models/author';
-import { CartService } from '../cart-service.service';
+import { CartService } from '../services/cart-service.service';
 
 @Component({
   selector: 'app-livros-info',

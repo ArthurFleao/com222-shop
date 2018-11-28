@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Categoria } from '../models/categoria';
-import { LivrosService } from '../livros-service.service';
+import { LivrosService } from '../services/livros-service.service';
 
 @Component({
   selector: 'app-menu-lateral',

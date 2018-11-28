@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { CustomerService } from '../services/customer-service.service';
+import { Customer } from '../models/customer';
 
 @Component({
   selector: 'app-checkout',
@@ -24,6 +26,7 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private fb : FormBuilder,
     private cookieService: CookieService,
+    private customerService: CustomerService,
   ) { 
 
   }
@@ -41,6 +44,24 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit(){
     console.log(this.profileForm.value)
+
+    let newCustomer = new Customer();
+
+    newCustomer.email = this.profileForm.value.email;
+    newCustomer.fname = this.profileForm.value.firstName;
+    newCustomer.lname = this.profileForm.value.lastName;
+
+    newCustomer.street = this.profileForm.value.address.street;
+    newCustomer.city = this.profileForm.value.address.city;
+    newCustomer.zip = this.profileForm.value.address.zip;
+    newCustomer.state = this.profileForm.value.address.state;
+
+
+
+    this.customerService.addCustomer(newCustomer)
+    .subscribe();
+
+
   }
 
 }

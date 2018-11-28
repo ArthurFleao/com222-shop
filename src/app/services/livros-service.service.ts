@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Categoria } from './models/categoria';
-import { Descricao } from './models/descricao';
-import { LivroInfo } from './models/livro-info';
-import { Author } from './models/author';
+import { Categoria } from '../models/categoria';
+import { Descricao } from '../models/descricao';
+import { LivroInfo } from '../models/livro-info';
+import { Author } from '../models/author';
 
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
 
 @Injectable({
   providedIn: 'root'

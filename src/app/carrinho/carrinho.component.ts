@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TSMap } from 'typescript-map';
-import { CartService } from '../cart-service.service';
-import { LivrosService } from '../livros-service.service';
+import { CartService } from '../services/cart-service.service';
+import { LivrosService } from '../services/livros-service.service';
 import { LivroInfo } from '../models/livro-info';
 import { ItemCarrinho } from '../models/item-carrinho';
 import { CookieService } from 'ngx-cookie-service';
