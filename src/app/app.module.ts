@@ -10,10 +10,11 @@ import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 import { ListaLivrosComponent } from './lista-livros/lista-livros.component';
 
 import { HeaderComponent } from './header/header.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BuscaLivrosComponent } from './busca-livros/busca-livros.component';
 import { CookieService } from 'ngx-cookie-service';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +24,15 @@ import { CarrinhoComponent } from './carrinho/carrinho.component';
     ListaLivrosComponent,
     HeaderComponent,
     BuscaLivrosComponent,
-    CarrinhoComponent
+    CarrinhoComponent,
+    CheckoutComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

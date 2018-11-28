@@ -20,25 +20,7 @@ Total: {{total}}
 
 
 <form>
-  <input [(ngModel)]="email" name="email" type="text">
+  <input name="email" type="email"  [formControl]="email">
   {{msgErro}}
-  <button (click)="checkout()" type="submit"> Checkout </button>
-
-  <input id="name" name="name" class="form-control" required minlength="4" appForbiddenName="bob" [(ngModel)]="name"
-    #name="ngModel">
-
-  <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
-
-    <div *ngIf="name.errors.required">
-      Name is required.
-    </div>
-    <div *ngIf="name.errors.minlength">
-      Name must be at least 4 characters long.
-    </div>
-    <div *ngIf="name.errors.forbiddenName">
-      Name cannot be Bob.
-    </div>
-
-  </div>
-
+  <button (click)="checkout()" [disabled]="!email.valid" type="submit"> Checkout </button>
 </form>

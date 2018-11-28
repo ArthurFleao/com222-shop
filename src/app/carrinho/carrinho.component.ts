@@ -5,6 +5,7 @@ import { LivrosService } from '../livros-service.service';
 import { LivroInfo } from '../models/livro-info';
 import { ItemCarrinho } from '../models/item-carrinho';
 import { CookieService } from 'ngx-cookie-service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-carrinho',
@@ -19,36 +20,48 @@ export class CarrinhoComponent implements OnInit {
   subtotal: number;
   total: number;
   frete: number;
-  email: string;
+  email: FormControl;
+
   msgErro: string;
-  name: string;
-  
+
+
   constructor(
     private cartService: CartService,
     private livrosService: LivrosService,
     private cookieService: CookieService,
 
-  ) { this.init(); }
+  ) {
+    this.init();
+    this.email = new FormControl('', [Validators.email, Validators.required]);
 
-  init( ){
-    this.carrinho = new Array<ItemCarrinho>(); this.total = this.frete = this.subtotal =  0;
+
+  }
+
+  init() {
+    this.carrinho = new Array<ItemCarrinho>(); this.total = this.frete = this.subtotal = 0;
   }
 
   ngOnInit() {
     this.getLivroInfo();
 
-    this.email = this.cookieService.get("email");
+    this.email.setValue(this.cookieService.get("email"));
 
   }
 
-  checkout(){
+  checkout() {
 
-
+    if (this.email.valid) { 
+      this.msgErro = '';
+      this.setEmail();
+    
+    }
+    else
+    this.msgErro = 'Email Inválido!';
+  
   }
 
-  setEmail()
-  {
-    this.cookieService.set("email",this.email);
+  setEmail() {
+    this.cookieService.set("email", this.email.value);
   }
 
   getLivroInfo() {
@@ -61,7 +74,7 @@ export class CarrinhoComponent implements OnInit {
       );
   }
 
-  limparCarrinho(){
+  limparCarrinho() {
     this.cartService.limparCarrinho();
     this.refresh();
   }
@@ -99,15 +112,15 @@ export class CarrinhoComponent implements OnInit {
       this.subtotal += item.price * item.qtd;
 
       if (this.frete == 0)
-      this.frete+=5;
+        this.frete += 5;
 
-      this.frete += 5*item.qtd;
-      
+      this.frete += 5 * item.qtd;
+
     });
 
     this.total = this.subtotal + this.frete;
   }
 
-  
+
 
 }
