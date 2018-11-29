@@ -7,6 +7,7 @@ import { ItemCarrinho } from '../models/item-carrinho';
 import { CartService } from '../services/cart-service.service';
 import { Order } from '../models/order.';
 import { OrderService } from '../services/order-service.service';
+import { OrderItem } from '../models/orderitem.';
 
 @Component({
   selector: 'app-checkout',
@@ -26,6 +27,7 @@ export class CheckoutComponent implements OnInit {
     }),
   });
 
+  discount: number = 1;
   msg: string;
   update: boolean;
   custID: number;
@@ -92,9 +94,9 @@ export class CheckoutComponent implements OnInit {
     newCustomer.state = this.profileForm.value.address.state;
 
     if (this.update)
-      this.customerService.updateCustomer(newCustomer).subscribe(id => { this.saveOrder()});
+      this.customerService.updateCustomer(newCustomer).subscribe(id => { this.saveOrder() });
     else
-      this.customerService.addCustomer(newCustomer).subscribe(id => { this.custID = id[0]; this.saveOrder()});
+      this.customerService.addCustomer(newCustomer).subscribe(id => { this.custID = id[0]; this.saveOrder() });
 
   }
 
@@ -107,14 +109,26 @@ export class CheckoutComponent implements OnInit {
     newOrder.orderDate = new Date();
 
     this.orderService.addOrder(newOrder)
-      .subscribe(orderID => console.log("orderid", orderID));
+      .subscribe(orderID => {
+        this.carrinho.forEach(item => {
+
+          let newOrderItem = new OrderItem();
+
+          newOrderItem.orderID = orderID[0];
+          newOrderItem.ISBN = item.ISBN;
+          newOrderItem.price = item.price * this.discount;
+          newOrderItem.qty = item.qtd;
+
+          this.orderService.addOrderItem(newOrderItem).subscribe();
+        });
+      });
 
 
-    // this.carrinho.forEach(item => {        
-    // });
+
   }
 
 
 
 
 }
+
