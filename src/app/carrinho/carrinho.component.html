@@ -1,26 +1,40 @@
-itens no carrinho:
+<h1>
 
-<button (click)="limparCarrinho()">LIMPAR CARRINHO</button>
+  Itens no Carrinho:
+</h1>
+
+<button class="btn btn-warning" (click)="limparCarrinho()">Limpar Carrinho</button>
 <div *ngFor="let item of carrinho">
 
   {{item.title}}
   <br>
   {{item.price}}
   <br>
-  <button (click)="remove(item.ISBN)"> Remover </button>
+  <button class="btn btn-danger" (click)="remove(item.ISBN)"> Remover </button>
   {{item.qtd}}
-  <button (click)="add(item.ISBN)"> Adicionar </button>
+  <button class="btn btn-primary" (click)="add(item.ISBN)"> Adicionar </button>
   <hr>
 </div>
 
 <hr>
-Subtotal: {{subtotal}}
-Frete: {{frete}}
-Total: {{total}}
+<h2>
+  <b>Subtotal:</b> {{subtotal}}
+</h2>
+<h2>
+  <b> 
+
+    Frete: {{frete}}
+  </b>
+</h2>
+<h2>
+  <b>
+    Total: {{total}}
+    </b>
+</h2>
 
 
 <form>
-  <input name="email" type="email"  [formControl]="email">
+  <input name="email" type="email" [formControl]="email">
   {{msgErro}}
-  <button (click)="checkout()" [disabled]="!email.valid" type="submit"> Checkout </button>
+  <button class="btn btn-success" (click)="checkout()" [disabled]="!email.valid" type="submit"> Checkout </button>
 </form>

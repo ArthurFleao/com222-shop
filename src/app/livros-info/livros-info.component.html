@@ -1,23 +1,39 @@
-<ul>
-    <button (click)="addToCart()"> ADD TO CART </button>
-    <a href="https://baldochi.unifei.edu.br/COM222/trabfinal/imagens/{{livro.ISBN}}.01.LZZZZZZZ.jpg">
-        <img src="https://baldochi.unifei.edu.br/COM222/trabfinal/imagens/{{livro.ISBN}}.01.MZZZZZZZ.jpg" alt="Imagem não encontrada.">
-    </a>
-    <li> {{livro.CategoryID}} </li>
-    <li> {{livro.CategoryName}} </li>
-    <li> {{livro.ISBN}} </li>
-    <li> {{livro.title}} </li>
-    <li innerHtml="{{livro.description}}"> </li>
-    <li> {{livro.price}} </li>
-    <li> {{livro.publisher}} </li>
-    <li> {{livro.pubdate}} </li>
-    <li> {{livro.edition}} </li>
-    <li> {{livro.pages}} </li>
+<div class="card">
 
-    <hr>
-</ul>
-<ul *ngFor="let autor of autores">
-    <li> {{autor.AuthorID}} </li>
-    <li> {{autor.nameF}} </li>
-    <li> {{autor.nameL}} </li>
-</ul>
+
+    <div class="card-header">
+
+        <h1>{{livro.title}}</h1>
+    </div>
+
+    <div class="card-body">
+
+        <a href="https://baldochi.unifei.edu.br/COM222/trabfinal/imagens/{{livro.ISBN}}.01.LZZZZZZZ.jpg">
+            <img src="https://baldochi.unifei.edu.br/COM222/trabfinal/imagens/{{livro.ISBN}}.01.MZZZZZZZ.jpg" alt="Imagem não encontrada.">
+        </a>
+        <button class="btn-lg btn-success" (click)="addToCart()"> ADD TO CART </button>
+
+        <div class="row">
+            <ul>
+                <li> <b>Categoria: </b> {{livro.CategoryName}} </li>
+                <li> <b> ISBN: </b> {{livro.ISBN}} </li>
+                <li> <b> Preço: </b> {{livro.price}} </li>
+                <li> <b> Publicante: </b> {{livro.publisher}} </li>
+                <li> <b> Data de </b> Publicação: {{livro.pubdate}} </li>
+                <li> <b> Edição: </b> {{livro.edition}} </li>
+                <li> <b> Número de Páginas </b> {{livro.pages}} </li>
+            </ul>
+        </div>
+        <hr>
+    </div>
+    <p innerHtml="{{livro.description}}"> </p>
+<div style="margin: 10px;">
+
+    <h2>Escrito por: </h2>
+    <ul *ngFor="let autor of autores">
+        <li> {{autor.nameF}} {{autor.nameL}}</li>
+        
+    </ul>
+</div>
+
+</div>

@@ -1,13 +1,19 @@
 <div class="menu">
 
-  <h1
+  <h3>
+
+    Buscar:
+  </h3>
 
   <form>
     <input [(ngModel)]="termosBusca" name="termosBusca" type="text">
     <button class="btn btn-info" routerLink="lista/busca/{{termosBusca}}" type="submit"> Pesquisar </button>
   </form>
 
-  Categorias:
+  <h3>
+
+    Categorias:
+  </h3>
 
   <ul>
     <li *ngFor="let categoria of categorias">

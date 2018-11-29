@@ -1,12 +1,17 @@
-<div *ngFor="let livro of livros">
+<div *ngFor="let livro of livros" class="card">
+  <div class="card-header">
 
-  <a routerLink="/info/{{livro.ISBN}}">
-    <img src="https://baldochi.unifei.edu.br/COM222/trabfinal/imagens/{{livro.ISBN}}.01.THUMBZZZ.jpg" alt="Imagem não encontrada.">
-  </a>
-  <h3>{{livro.title}}</h3>
-  <br>
-  <span [innerHtml]="livro.description"> </span>
-  <a routerLink="/info/{{livro.ISBN}}"> Ler Mais...</a>
-  <br>
+    <h3>{{livro.title}}</h3>
+  </div>
+  <div class="card-body">
+
+    <a routerLink="/info/{{livro.ISBN}}">
+      <img src="https://baldochi.unifei.edu.br/COM222/trabfinal/imagens/{{livro.ISBN}}.01.THUMBZZZ.jpg" alt="Imagem não encontrada.">
+    </a>
+    <br>
+    <span [innerHtml]="livro.description"> </span>
+    <a class="btn btn-primary" routerLink="/info/{{livro.ISBN}}"> Ler Mais...</a>
+    <br>
+  </div>
 
 </div>
