@@ -1,45 +1,48 @@
 {{msg}}
 {{id}}
+
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
   <label>
     Email:
     <input type="email" formControlName="email">
   </label>
-
+  <br>
   <label>
     Nome:
     <input type="text" formControlName="firstName">
   </label>
-
+  <br>
   <label>
     Sobrenome:
     <input type="text" formControlName="lastName">
   </label>
-
+  <br>
+  <hr>
   <div formGroupName="address">
     <h3>Endereço</h3>
-
+    <br>
     <label>
       Rua:
       <input type="text" formControlName="street">
     </label>
-
+    <br>
     <label>
       Cidade:
       <input type="text" formControlName="city">
     </label>
-
+    <br>
     <label>
       Estado:
       <input type="text" formControlName="state">
     </label>
-
+    <br>
     <label>
       CEP:
       <input type="number" formControlName="zip">
     </label>
   </div>
+  <br>
   <button type="submit" [disabled]="!profileForm.valid">Submit</button>
 
 </form>

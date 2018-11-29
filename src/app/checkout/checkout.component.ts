@@ -11,6 +11,7 @@ import { OrderItem } from '../models/orderitem';
 import { EmailService } from '../services/mail-service.service';
 import { Email } from '../models/email';
 import { EMAIL_VALIDATOR } from '@angular/forms/src/directives/validators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -25,7 +26,7 @@ export class CheckoutComponent implements OnInit {
     address: this.fb.group({
       street: ['', Validators.required],
       city: ['', Validators.required],
-      state: ['', Validators.required],
+      state: ['', [Validators.required,Validators.maxLength(2)]],
       zip: ['', Validators.required]
     }),
   });
@@ -36,6 +37,7 @@ export class CheckoutComponent implements OnInit {
   custID: number;
   carrinho: ItemCarrinho[];
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private cookieService: CookieService,
     private customerService: CustomerService,
@@ -149,5 +151,6 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.emailService.sendMail(email).subscribe();
+    this.router.navigate(['historico']);
   }
 }

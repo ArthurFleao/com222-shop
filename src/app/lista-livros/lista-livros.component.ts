@@ -18,7 +18,7 @@ export class ListaLivrosComponent implements OnInit {
   constructor(
     private livrosService: LivrosService,
     private route: ActivatedRoute,
-  ) {  
+  ) {
     this.route.params.subscribe(params => {
       this.categoryId = params['categoryId'];
       this.termosBusca = params['termosBusca'];
@@ -27,7 +27,8 @@ export class ListaLivrosComponent implements OnInit {
         this.getLivroInfoByBusca();
       else
         this.getLivroInfo();
-    });}
+    });
+  }
 
   ngOnInit() {
 
@@ -35,13 +36,26 @@ export class ListaLivrosComponent implements OnInit {
 
   categorizarLivros() {
 
-    if (this.categoryId != "todos") {
+    if (this.categoryId != "random") {
       let categoryIdNumber = +this.categoryId;
 
       this.livros = this.livros.filter((livros) => {
         return livros.CategoryID === categoryIdNumber;
       })
-    };
+    }
+    else {
+      let newLivroInfo = new Array<LivroInfo>();
+
+      for (let i = 0; i < 4; i++) {
+        let random = Math.floor(Math.random() * this.livros.length) + 0;
+        newLivroInfo.push(this.livros[random]);
+        this.livros.splice(random, 1);
+        
+      }
+
+
+      this.livros = newLivroInfo;
+    }
 
   }
 

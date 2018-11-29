@@ -1,11 +1,19 @@
 <div class="menu">
+
+  <h1
+
   <form>
     <input [(ngModel)]="termosBusca" name="termosBusca" type="text">
-    <button routerLink="lista/busca/{{termosBusca}}" type="submit"> Pesquisar </button>
+    <button class="btn btn-info" routerLink="lista/busca/{{termosBusca}}" type="submit"> Pesquisar </button>
   </form>
-  
+
+  Categorias:
+
   <ul>
-      <li > <a routerLink='/lista/todos' routerLinkActive="router-link-active"> Todas </a> </li>
-    <li *ngFor="let categoria of categorias"> <a routerLink='/lista/{{categoria.CategoryID}}' routerLinkActive="router-link-active" > {{categoria.CategoryName}} </a> </li>
+    <li *ngFor="let categoria of categorias">
+      <a routerLink='/lista/{{categoria.CategoryID}}' routerLinkActive="router-link-active">
+        {{categoria.CategoryName}}
+      </a>
+    </li>
   </ul>
 </div>

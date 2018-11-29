@@ -8,8 +8,8 @@ import { HistoricoComprasComponent } from './historico-compras/historico-compras
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'lista/todos', pathMatch: 'full' },
-  { path: 'lista/todos/', component: ListaLivrosComponent },
+  { path: '', redirectTo: 'lista/random', pathMatch: 'full' },
+  { path: 'lista/random/', component: ListaLivrosComponent },
   { path: 'lista/:categoryId', component: ListaLivrosComponent },
   { path: 'lista/busca/:termosBusca', component: ListaLivrosComponent },
   { path: 'info/:livroISBN', component: LivrosInfoComponent },
