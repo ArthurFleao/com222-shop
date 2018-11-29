@@ -15,6 +15,7 @@ import { BuscaLivrosComponent } from './busca-livros/busca-livros.component';
 import { CookieService } from 'ngx-cookie-service';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { HistoricoComprasComponent } from './historico-compras/historico-compras.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     HeaderComponent,
     BuscaLivrosComponent,
     CarrinhoComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    HistoricoComprasComponent
   ],
   imports: [
     FormsModule,

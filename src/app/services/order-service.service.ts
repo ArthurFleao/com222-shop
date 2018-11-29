@@ -3,6 +3,7 @@ import { Order } from '../models/order.';
 import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { OrderItem } from '../models/orderitem.';
+import { OrderItemBook } from '../models/orderitembook';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,5 +25,10 @@ export class OrderService {
   }
   addOrderItem(orderItem: OrderItem): Observable<OrderItem> {
     return this.http.post<OrderItem>(this.orderitemsUrl, orderItem, httpOptions);
+  }
+
+  getOrdersByCustID(custID: number): Observable<OrderItemBook[]> {
+    const url = `${this.ordersUrl}/${custID}`;
+    return this.http.get<OrderItemBook[]>(url);
   }
 }

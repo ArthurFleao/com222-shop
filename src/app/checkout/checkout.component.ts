@@ -102,7 +102,6 @@ export class CheckoutComponent implements OnInit {
 
 
   saveOrder() {
-
     let newOrder = new Order();
 
     newOrder.custID = this.custID;
@@ -122,13 +121,6 @@ export class CheckoutComponent implements OnInit {
           this.orderService.addOrderItem(newOrderItem).subscribe();
         });
       });
-
-
-
   }
-
-
-
-
 }
 

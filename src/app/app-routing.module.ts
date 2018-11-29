@@ -4,6 +4,7 @@ import { ListaLivrosComponent } from './lista-livros/lista-livros.component';
 import { LivrosInfoComponent } from './livros-info/livros-info.component';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { HistoricoComprasComponent } from './historico-compras/historico-compras.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'lista/busca/:termosBusca', component: ListaLivrosComponent },
   { path: 'info/:livroISBN', component: LivrosInfoComponent },
   { path: 'carrinho', component: CarrinhoComponent },
-  { path: 'checkout', component: CheckoutComponent }
+  { path: 'checkout', component: CheckoutComponent },
+  { path: 'historico', component: HistoricoComprasComponent },
 ];
 
 @NgModule({
