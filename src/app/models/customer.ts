@@ -1,6 +1,6 @@
 
 export class Customer {
-
+    custID: number;
     fname: string;
     lname: string;
     email: string;

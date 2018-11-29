@@ -5,6 +5,8 @@ import { CustomerService } from '../services/customer-service.service';
 import { Customer } from '../models/customer';
 import { ItemCarrinho } from '../models/item-carrinho';
 import { CartService } from '../services/cart-service.service';
+import { Order } from '../models/order.';
+import { OrderService } from '../services/order-service.service';
 
 @Component({
   selector: 'app-checkout',
@@ -26,13 +28,14 @@ export class CheckoutComponent implements OnInit {
 
   msg: string;
   update: boolean;
-  id: number;
+  custID: number;
   carrinho: ItemCarrinho[];
   constructor(
     private fb: FormBuilder,
     private cookieService: CookieService,
     private customerService: CustomerService,
     private cartService: CartService,
+    private orderService: OrderService,
   ) {
     this.update = false;
 
@@ -41,7 +44,7 @@ export class CheckoutComponent implements OnInit {
   ngOnInit() {
 
     this.carrinho = this.cartService.getCarrinho();
-    console.log("checkCar",this.carrinho);
+    console.log("checkCar", this.carrinho);
 
     this.customerService.getCustomerByEmail(this.cookieService.get("email"))
       .subscribe(
@@ -55,6 +58,7 @@ export class CheckoutComponent implements OnInit {
           else {
             this.msg = 'Bem vindo novamente! Atualize seus dados para entrega!';
             this.update = true;
+            this.custID = customer.custID;
             this.profileForm.patchValue({
               email: customer.email,
               firstName: customer.fname,
@@ -78,6 +82,7 @@ export class CheckoutComponent implements OnInit {
 
     let newCustomer = new Customer();
     //    NOVO CUSTOMER  <----   FORMULÁRIO
+    newCustomer.custID = this.custID;
     newCustomer.email = this.profileForm.value.email;
     newCustomer.fname = this.profileForm.value.firstName;
     newCustomer.lname = this.profileForm.value.lastName;
@@ -87,22 +92,29 @@ export class CheckoutComponent implements OnInit {
     newCustomer.state = this.profileForm.value.address.state;
 
     if (this.update)
-      this.customerService.updateCustomer(newCustomer).subscribe(id => {this.saveOrder(id[0])});
+      this.customerService.updateCustomer(newCustomer).subscribe(id => { this.saveOrder()});
     else
-      this.customerService.addCustomer(newCustomer).subscribe(id => {this.saveOrder(id[0])});
+      this.customerService.addCustomer(newCustomer).subscribe(id => { this.custID = id[0]; this.saveOrder()});
 
   }
 
 
-  saveOrder(idCustomer:number){
+  saveOrder() {
 
-    this.carrinho.forEach(item => {
-        
-        
-    });
+    let newOrder = new Order();
+
+    newOrder.custID = this.custID;
+    newOrder.orderDate = new Date();
+
+    this.orderService.addOrder(newOrder)
+      .subscribe(orderID => console.log("orderid", orderID));
+
+
+    // this.carrinho.forEach(item => {        
+    // });
   }
 
 
 
-  
+
 }
