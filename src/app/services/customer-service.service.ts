@@ -20,8 +20,8 @@ export class CustomerService {
     return this.http.get<Customer[]>(this.customersUrl)
   }
 
-  getCustomer(id: number): Observable<Customer> {
-    const url = `${this.customersUrl}/${id}`;
+  getCustomerByEmail(email: string): Observable<Customer> {
+    const url = `${this.customersUrl}/${email}`;
     return this.http.get<Customer>(url);
   }
 

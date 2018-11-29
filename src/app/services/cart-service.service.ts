@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { TSMap } from "typescript-map"
 import { Observable } from 'rxjs';
+import { ItemCarrinho } from '../models/item-carrinho';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-
+  carrinho: ItemCarrinho[];
   lista: TSMap<string, number>;
   constructor(
     private cookieService: CookieService,
@@ -64,6 +65,12 @@ export class CartService {
 
   getLista():TSMap<string,number>{
     return  this.lista;
+  }
+  setCarrinho(newCarrinho: ItemCarrinho[]){
+    this.carrinho = newCarrinho;
+  }
+  getCarrinho(): ItemCarrinho[]{
+    return this.carrinho;
   }
 
 

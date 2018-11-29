@@ -6,6 +6,7 @@ import { LivroInfo } from '../models/livro-info';
 import { ItemCarrinho } from '../models/item-carrinho';
 import { CookieService } from 'ngx-cookie-service';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrinho',
@@ -29,12 +30,13 @@ export class CarrinhoComponent implements OnInit {
     private cartService: CartService,
     private livrosService: LivrosService,
     private cookieService: CookieService,
+    private router: Router,
 
   ) {
     this.init();
     this.email = new FormControl('', [Validators.email, Validators.required]);
 
-
+    
   }
 
   init() {
@@ -50,14 +52,16 @@ export class CarrinhoComponent implements OnInit {
 
   checkout() {
 
-    if (this.email.valid) { 
+    if (this.email.valid) {
       this.msgErro = '';
       this.setEmail();
-    
+      this.router.navigate(['checkout'],{ skipLocationChange: true });
+
+
     }
     else
-    this.msgErro = 'Email Inválido!';
-  
+      this.msgErro = 'Email Inválido!';
+
   }
 
   setEmail() {
@@ -118,6 +122,7 @@ export class CarrinhoComponent implements OnInit {
 
     });
 
+    this.cartService.setCarrinho(this.carrinho);
     this.total = this.subtotal + this.frete;
   }
 
