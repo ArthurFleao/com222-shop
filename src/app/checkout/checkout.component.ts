@@ -5,9 +5,12 @@ import { CustomerService } from '../services/customer-service.service';
 import { Customer } from '../models/customer';
 import { ItemCarrinho } from '../models/item-carrinho';
 import { CartService } from '../services/cart-service.service';
-import { Order } from '../models/order.';
+import { Order } from '../models/order';
 import { OrderService } from '../services/order-service.service';
-import { OrderItem } from '../models/orderitem.';
+import { OrderItem } from '../models/orderitem';
+import { EmailService } from '../services/mail-service.service';
+import { Email } from '../models/email';
+import { EMAIL_VALIDATOR } from '@angular/forms/src/directives/validators';
 
 @Component({
   selector: 'app-checkout',
@@ -38,6 +41,7 @@ export class CheckoutComponent implements OnInit {
     private customerService: CustomerService,
     private cartService: CartService,
     private orderService: OrderService,
+    private emailService: EmailService,
   ) {
     this.update = false;
 
@@ -121,6 +125,29 @@ export class CheckoutComponent implements OnInit {
           this.orderService.addOrderItem(newOrderItem).subscribe();
         });
       });
+
+    this.sendEmail();
+  }
+
+  sendEmail() {
+    let email = new Email();
+    email.mailto = this.cookieService.get("email");
+    email.mailsubject = "Obrigado pela compra no CodeShop!"
+    email.emailbody = 'Sua compra foi confirmada: ';
+
+    this.carrinho.forEach(item => {
+
+
+      email.emailbody += '  ' + item.ISBN;
+      email.emailbody += '  ' + item.price * this.discount;
+      email.emailbody += '  ' + item.qtd;
+      email.emailbody += '||';
+
+
+
+      
+    });
+
+    this.emailService.sendMail(email).subscribe();
   }
 }
-

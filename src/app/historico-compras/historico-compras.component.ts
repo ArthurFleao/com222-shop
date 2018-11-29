@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order-service.service';
 import { CookieService } from 'ngx-cookie-service';
-import { OrderItem } from '../models/orderitem.';
+import { OrderItem } from '../models/orderitem';
 import { CustomerService } from '../services/customer-service.service';
 import { OrderItemBook } from '../models/orderitembook';
 
