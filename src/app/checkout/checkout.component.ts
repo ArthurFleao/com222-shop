@@ -26,11 +26,12 @@ export class CheckoutComponent implements OnInit {
     address: this.fb.group({
       street: ['', Validators.required],
       city: ['', Validators.required],
-      state: ['', [Validators.required,Validators.maxLength(2)]],
+      state: ['', [Validators.required, Validators.maxLength(2)]],
       zip: ['', Validators.required]
     }),
   });
 
+  counter: number = 0;
   discount: number = 1;
   msg: string;
   update: boolean;
@@ -116,7 +117,6 @@ export class CheckoutComponent implements OnInit {
     this.orderService.addOrder(newOrder)
       .subscribe(orderID => {
         this.carrinho.forEach(item => {
-
           let newOrderItem = new OrderItem();
 
           newOrderItem.orderID = orderID[0];
@@ -124,13 +124,22 @@ export class CheckoutComponent implements OnInit {
           newOrderItem.price = item.price * this.discount;
           newOrderItem.qty = item.qtd;
 
-          this.orderService.addOrderItem(newOrderItem).subscribe();
+          this.orderService.addOrderItem(newOrderItem).subscribe(ord => {
+            this.counter++;
+            if (this.counter >= this.carrinho.length)
+              this.finalizaCompra();
+          });
         });
       });
 
-    this.sendEmail();
+
   }
 
+  finalizaCompra() {
+    this.sendEmail();
+    this.router.navigate(['historico']);
+    this.cartService.limparCarrinho();
+  }
   sendEmail() {
     let email = new Email();
     email.mailto = this.cookieService.get("email");
@@ -138,19 +147,12 @@ export class CheckoutComponent implements OnInit {
     email.emailbody = 'Sua compra foi confirmada: ';
 
     this.carrinho.forEach(item => {
-
-
       email.emailbody += '  ' + item.ISBN;
       email.emailbody += '  ' + item.price * this.discount;
       email.emailbody += '  ' + item.qtd;
       email.emailbody += '||';
-
-
-
-      
     });
 
     this.emailService.sendMail(email).subscribe();
-    this.router.navigate(['historico']);
   }
 }

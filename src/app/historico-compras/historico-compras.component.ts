@@ -24,15 +24,16 @@ export class HistoricoComprasComponent implements OnInit {
 
     this.email = this.cookieService.get("email");
     if (this.email != '') {
-      this.customerService.getCustomerByEmail(this.email).subscribe(customer => {
+      let sub = this.customerService.getCustomerByEmail(this.email).subscribe(customer => {
         customer = customer[0]
-        this.orderService.getOrdersByCustID(customer.custID).subscribe(orders => {
+        let sub2 = this.orderService.getOrdersByCustID(customer.custID).subscribe(orders => {
           this.compras = orders;
           console.log(orders);
+          sub.unsubscribe();
+          sub2.unsubscribe();
+
         })
       })
-
-
     }
   }
 
